@@ -18,6 +18,17 @@ let task1 = new ListItem("eat dog", true, "today");
 toDoList.addItem(task1);
 Expected Output: toDoList = { 1: task1 }
 
+Test: "Removes a list item from the list"
+Code: 
+let toDoList = new ToDoList;
+let task1 = new ListItem("eat dog", true, "today");
+let task2 = new ListItem("get new dog", false, "tomorrow");
+toDoList.addItem(task1);
+toDoList.addItem(task2);
+toDoList.deleteItem(task2);
+Expected Output: toDoList = { 1: task1 }
+
+
 Describe ListItem()
 
 Test: "Create new instance of a list item"
