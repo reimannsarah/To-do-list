@@ -32,9 +32,38 @@ function userInput(e) {
 
     let newItem = new ListItem(taskName, date);
     toDoList.addItem(newItem)
+    displayList();
 }
 
+function displayList(){
+    let listItems = document.getElementById("listItems");
+    let itemCard = document.createElement("div");
+    itemCard.setAttribute("class","itemCard");
+    let checkbox = document.createElement("input");
+    checkbox.setAttribute("type", "checkbox");
+    let pTask = document.createElement("p");
+    let pDate = document.createElement("p");
+    let removeBtn = document.createElement("button");
+    removeBtn.innerText = "X";
 
+    let keys = Object.keys(toDoList.tasks)
+    let newEntry = keys.pop();
+
+    itemCard.setAttribute("id", newEntry)
+
+    pTask.innerText = toDoList.tasks[newEntry].task
+    pDate.innerText = toDoList.tasks[newEntry].date
+    itemCard.append(checkbox,pTask,pDate,removeBtn);
+    listItems.append(itemCard);
+
+    removeBtn.addEventListener("click", removeItem)
+}
+
+function removeItem(e) {
+    let id = e.target.parentNode.id
+    toDoList.deleteItem(id)
+    e.target.parentNode.remove()
+}
 
 window.addEventListener("load", function() {
     this.document.querySelector("form").addEventListener("submit", userInput)
