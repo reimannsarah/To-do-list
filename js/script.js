@@ -44,6 +44,7 @@ function displayList(){
     let pTask = document.createElement("p");
     let pDate = document.createElement("p");
     let removeBtn = document.createElement("button");
+    removeBtn.setAttribute("class","removeBtn");
     removeBtn.innerText = "X";
 
     let keys = Object.keys(toDoList.tasks)
@@ -70,8 +71,31 @@ function checkOffItem (e){
     let id = e.target.parentNode.id;
     if (toDoList.tasks[id].complete === false) {
         toDoList.tasks[id].complete = true;
+        displayDone(id);
         console.log(toDoList.tasks[id].complete);
-    } 
+    } else {
+        toDoList.tasks[id].complete = false;
+        console.log(toDoList.tasks[id].complete);
+        deleteDiplay(id);
+
+    }
+}
+
+function displayDone(id) {
+    const listItems = document.querySelector("#listItems")
+    const doneDisplay = document.createElement("div");
+    doneDisplay.setAttribute("id", "done");
+    listItems.after(doneDisplay);
+
+    const pInfo = document.createElement("p");
+    pInfo.setAttribute("class", "done");
+    pInfo.setAttribute("id", `done${id}`)
+    pInfo.innerText = toDoList.tasks[id].task + " " + toDoList.tasks[id].date;
+    doneDisplay.append(pInfo);
+}
+
+function deleteDiplay(id){
+    document.querySelector(`p#done${id}`).remove()
 }
 
 window.addEventListener("load", function() {
