@@ -56,13 +56,22 @@ function displayList(){
     itemCard.append(checkbox,pTask,pDate,removeBtn);
     listItems.append(itemCard);
 
-    removeBtn.addEventListener("click", removeItem)
+    removeBtn.addEventListener("click", removeItem);
+    checkbox.addEventListener("click", checkOffItem);
 }
 
 function removeItem(e) {
-    let id = e.target.parentNode.id
-    toDoList.deleteItem(id)
-    e.target.parentNode.remove()
+    let id = e.target.parentNode.id;
+    toDoList.deleteItem(id);
+    e.target.parentNode.remove();
+}
+
+function checkOffItem (e){
+    let id = e.target.parentNode.id;
+    if (toDoList.tasks[id].complete === false) {
+        toDoList.tasks[id].complete = true;
+        console.log(toDoList.tasks[id].complete);
+    } 
 }
 
 window.addEventListener("load", function() {
