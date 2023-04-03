@@ -49,3 +49,9 @@ body{
 .done {
     text-decoration: line-through;
 }
+
+input[type="checkbox"] {
+    height: 25px;
+    width: 25px;
+    background-color: #FB4B4E;
+}
