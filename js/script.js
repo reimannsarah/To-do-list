@@ -1,0 +1,3 @@
+function ToDoList () {
+    this.tasks = {};
+}
